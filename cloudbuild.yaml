@@ -2,4 +2,16 @@ steps:
 - name: deploy
   image: gcr.io/triggermesh/serverless
   args: ['serverless', 'deploy']
+  env:
+  - name: AWS_ACCESS_KEY_ID
+    valueFrom:
+      secretKeyRef:
+        name: awscreds
+        value: aws_access_key_id 
+  - name: AWS_SECRET_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: awscreds
+        value: aws_secret_access_key
+  
 
