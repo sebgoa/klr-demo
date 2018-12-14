@@ -1,0 +1,5 @@
+steps:
+- name: deploy
+  image: gcr.io/triggermesh/serverless
+  args: ['serverless', 'deploy']
+
