@@ -1,3 +1,3 @@
-# tmserverless3
+# tm AWS
 
-kick it
+Deploys to AWS
