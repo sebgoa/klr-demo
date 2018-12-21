@@ -9,13 +9,13 @@ steps:
         valueFrom: 
           secretKeyRef: 
             name: awscreds
-            value: aws_access_key_id
+            key: aws_access_key_id
       - 
         name: AWS_SECRET_ACCESS_KEY
         valueFrom: 
           secretKeyRef: 
             name: awscreds
-            value: aws_secret_access_key
+            key: aws_secret_access_key
     image: gcr.io/triggermesh/serverless
     name: deploy
   
