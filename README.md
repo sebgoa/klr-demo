@@ -31,5 +31,41 @@ layers:
   None
 ```
 
+To delete your function do not forget to:
+
+```
+serverless remove
+```
+
 ## Deploy with [KLR](https://github.com/triggermesh/knative-lambda-runtime)
+
+You will need a [Knative](https://github.com/knative) installation.
+
+First install the KLR Python template like so:
+
+```
+tm deploy buildtemplate -f https://raw.githubusercontent.com/triggermesh/knative-lambda-runtime/master/python-3.7/buildtemplate.yaml
+```
+
+Then deploy the `handler.py` like so:
+
+```
+tm deploy service python-test -f . \
+                              --build-template knative-python37-runtime \
+                              --build-argument HANDLER=handler.endpoint \
+                              --wait
+```
+
+This deployment will return something like:
+
+```
+...
+Creating python-test function
+Deployment started. Run "tm -n sebgoa describe service python-test" to see the details
+Waiting for python-test ready state
+Service python-test URL: http://python-test.sebgoa.k.triggermesh.io
+```
+
+And you will be able to curl the endpoint and get the same result as in AWS Lambda.
+
 
