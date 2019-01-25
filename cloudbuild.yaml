@@ -2,7 +2,7 @@ steps:
   - 
     args: 
       - serverless
-      - deploy
+      - remove
     env: 
       - 
         name: AWS_ACCESS_KEY_ID
