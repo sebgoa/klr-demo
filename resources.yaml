@@ -1,0 +1,65 @@
+---
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: klr-demo
+spec:
+  type: git
+  params:
+  - name: revision
+    value: master
+  - name: url
+    value: https://github.com/sebgoa/klr-demo
+---
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: serverless-deploy
+spec:
+  inputs:
+    resources:
+    - name: repository
+      type: git
+  steps:
+  - name: deploy
+    workingDir: '/workspace/repository'
+    image: gcr.io/triggermesh/serverless
+    args: ["serverless", "deploy"]
+    env: 
+    - name: AWS_ACCESS_KEY_ID
+      valueFrom: 
+        secretKeyRef: 
+          name: awscreds
+          key: aws_access_key_id
+    - name: AWS_SECRET_ACCESS_KEY
+      valueFrom: 
+        secretKeyRef: 
+          name: awscreds
+          key: aws_secret_access_key
+---
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: serverless-remove
+spec:
+  inputs:
+    resources:
+    - name: repository
+      type: git
+  steps:
+  - name: remove
+    workingDir: '/workspace/repository'
+    image: gcr.io/triggermesh/serverless
+    args: ["serverless", "remove"]
+    env: 
+    - name: AWS_ACCESS_KEY_ID
+      valueFrom: 
+        secretKeyRef: 
+          name: awscreds
+          key: aws_access_key_id
+    - name: AWS_SECRET_ACCESS_KEY
+      valueFrom: 
+        secretKeyRef: 
+          name: awscreds
+          key: aws_secret_access_key
+

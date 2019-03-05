@@ -1,0 +1,13 @@
+---
+apiVersion: tekton.dev/v1alpha1
+kind: TaskRun
+metadata:
+  name: aws-deploy
+spec:
+  inputs:
+    resources:
+    - name: repository
+      resourceRef:
+        name: klr-demo
+  taskRef:
+    name: serverless-deploy
