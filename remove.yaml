@@ -2,7 +2,7 @@
 apiVersion: tekton.dev/v1alpha1
 kind: TaskRun
 metadata:
-  name: aws-remove
+  generateName: aws-remove-
 spec:
   inputs:
     resources:
