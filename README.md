@@ -68,4 +68,23 @@ Service python-test URL: http://python-test.sebgoa.k.triggermesh.io
 
 And you will be able to curl the endpoint and get the same result as in AWS Lambda.
 
+To delete the function:
+
+```
+tm delete services python-test
+```
+
+## Using your own private Docker registry
+
+If you use `tm` without specifying a registry destination it will assume you are using `https://cloud.triggermesh.io` and use the internal Docker registry.
+
+If you want to use your own registry, specify it in the build argument
+
+```
+tm deploy service python-test -f . \
+                              --build-template knative-python37-runtime \
+                              --build-argument IMAGE=index.docker.io/runseb/python-test
+                              --build-argument HANDLER=handler.endpoint \
+                              --wait
+```
 
