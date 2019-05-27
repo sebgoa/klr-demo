@@ -10,4 +10,5 @@ spec:
       resourceRef:
         name: klr-demo
   taskRef:
+    kind: Task
     name: serverless-deploy
