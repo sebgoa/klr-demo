@@ -2,7 +2,7 @@
 apiVersion: tekton.dev/v1alpha1
 kind: TaskRun
 metadata:
-  generateName: aws-deploy-
+  name: deployfoo
 spec:
   inputs:
     resources:

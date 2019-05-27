@@ -24,7 +24,8 @@ spec:
   - name: deploy
     workingDir: '/workspace/repository'
     image: gcr.io/triggermesh/serverless
-    args: ["serverless", "deploy"]
+    command: ["serverless"]
+    args: ["deploy"]
     env: 
     - name: AWS_ACCESS_KEY_ID
       valueFrom: 
@@ -50,7 +51,8 @@ spec:
   - name: remove
     workingDir: '/workspace/repository'
     image: gcr.io/triggermesh/serverless
-    args: ["serverless", "remove"]
+    command: ["serverless"]
+    args: ["remove"]
     env: 
     - name: AWS_ACCESS_KEY_ID
       valueFrom: 
